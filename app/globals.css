@@ -1,0 +1,256 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Abacus Dark Theme - Light Mode Fallback */
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 217.2 91.2% 59.8%;
+    --primary-foreground: 222.2 84% 4.9%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+
+    --radius: 0.5rem;
+
+    /* Law firm specific colors */
+    --law-gold: 43 74% 66%;
+    --law-navy: 217 91% 15%;
+    --law-slate: 215 25% 27%;
+    --law-blue: 217.2 91.2% 59.8%;
+    --success: 142 76% 36%;
+    --warning: 38 92% 50%;
+    --danger: 0 84% 60%;
+  }
+
+  .dark {
+    /* Abacus Dark Theme - Deep Professional Colors */
+    --background: 220 13% 8%;        /* Very dark blue-gray */
+    --foreground: 220 9% 92%;        /* Light gray text */
+
+    --card: 220 13% 11%;             /* Slightly lighter than background */
+    --card-foreground: 220 9% 92%;   /* Light text on cards */
+
+    --popover: 220 13% 11%;          /* Same as cards for consistency */
+    --popover-foreground: 220 9% 92%;
+
+    --primary: 43 74% 66%;           /* Law gold as primary */
+    --primary-foreground: 220 13% 8%;
+
+    --secondary: 220 13% 18%;        /* Medium dark for secondary elements */
+    --secondary-foreground: 220 9% 85%;
+
+    --muted: 220 13% 16%;            /* Subtle background for muted elements */
+    --muted-foreground: 220 9% 65%;  /* Muted text color */
+
+    --accent: 220 13% 20%;           /* Slightly lighter for accents */
+    --accent-foreground: 220 9% 92%;
+
+    --destructive: 0 84% 60%;        /* Red for destructive actions */
+    --destructive-foreground: 220 9% 92%;
+
+    --border: 220 13% 20%;           /* Subtle borders */
+    --input: 220 13% 16%;            /* Input backgrounds */
+    --ring: 43 74% 66%;              /* Gold focus rings */
+
+    /* Enhanced law firm colors for dark theme */
+    --law-gold: 43 74% 66%;          /* Bright gold accent */
+    --law-navy: 220 50% 25%;         /* Deep navy blue */
+    --law-slate: 220 13% 25%;        /* Dark slate */
+    --law-blue: 217 91% 65%;         /* Bright blue accent */
+    --success: 142 76% 45%;          /* Bright green for success */
+    --warning: 38 92% 60%;           /* Bright orange for warnings */
+    --danger: 0 84% 65%;             /* Bright red for danger */
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+@layer components {
+  /* Custom animations */
+  .animate-count-up {
+    counter-reset: num var(--num-from);
+    animation: count-up 2s ease-out forwards;
+  }
+
+  @keyframes count-up {
+    from { counter-increment: num var(--num-from); }
+    to { counter-increment: num var(--num-to); }
+  }
+
+  /* Status badges */
+  .status-new {
+    @apply bg-blue-500/20 text-blue-300 border-blue-500/30;
+  }
+  
+  .status-in-progress {
+    @apply bg-yellow-500/20 text-yellow-300 border-yellow-500/30;
+  }
+  
+  .status-review {
+    @apply bg-purple-500/20 text-purple-300 border-purple-500/30;
+  }
+  
+  .status-completed {
+    @apply bg-green-500/20 text-green-300 border-green-500/30;
+  }
+
+  /* Priority badges */
+  .priority-low {
+    @apply bg-gray-500/20 text-gray-300 border-gray-500/30;
+  }
+  
+  .priority-medium {
+    @apply bg-blue-500/20 text-blue-300 border-blue-500/30;
+  }
+  
+  .priority-high {
+    @apply bg-orange-500/20 text-orange-300 border-orange-500/30;
+  }
+  
+  .priority-urgent {
+    @apply bg-red-500/20 text-red-300 border-red-500/30;
+  }
+
+  /* Card hover effects - Enhanced for Abacus theme */
+  .card-hover {
+    @apply transition-all duration-300 hover:shadow-xl hover:shadow-primary/10 hover:-translate-y-1 hover:border-primary/30;
+  }
+
+  /* Glass effect - Darker for professional look */
+  .glass {
+    @apply bg-card/95 backdrop-blur-md border border-border/60;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  }
+
+  /* Law firm branding - Enhanced gradients */
+  .law-gradient {
+    background: linear-gradient(135deg, hsl(var(--law-navy)), hsl(var(--law-blue)));
+  }
+
+  .law-gradient-gold {
+    background: linear-gradient(135deg, hsl(var(--law-gold)), hsl(var(--warning)));
+  }
+
+  .law-gold {
+    color: hsl(var(--law-gold));
+  }
+
+  /* Professional Abacus enhancements */
+  .abacus-sidebar {
+    background: linear-gradient(180deg, hsl(var(--card)), hsl(var(--background)));
+    box-shadow: 2px 0 10px 0 rgba(0, 0, 0, 0.1);
+  }
+
+  .abacus-header {
+    background: hsl(var(--card) / 0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid hsl(var(--border));
+  }
+
+  /* Enhanced chat bubbles */
+  .chat-bubble-user {
+    background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary) / 0.8));
+    box-shadow: 0 4px 12px hsl(var(--primary) / 0.3);
+  }
+
+  .chat-bubble-other {
+    background: hsl(var(--muted));
+    box-shadow: 0 2px 8px hsl(var(--background) / 0.5);
+  }
+
+  /* Professional button enhancements */
+  .btn-primary {
+    background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary) / 0.9));
+    box-shadow: 0 4px 14px hsl(var(--primary) / 0.3);
+    transition: all 0.2s ease-in-out;
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px hsl(var(--primary) / 0.4);
+  }
+
+  /* Table enhancements */
+  .data-table {
+    background: hsl(var(--card));
+    border: 1px solid hsl(var(--border));
+    border-radius: calc(var(--radius) + 2px);
+  }
+
+  .data-table th {
+    background: hsl(var(--muted) / 0.5);
+    border-bottom: 2px solid hsl(var(--border));
+  }
+
+  .data-table tr:hover {
+    background: hsl(var(--accent) / 0.5);
+  }
+
+  /* Status indicators */
+  .status-indicator {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .status-indicator::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: currentColor;
+  }
+
+  /* Loading states */
+  .loading-shimmer {
+    background: linear-gradient(
+      90deg,
+      hsl(var(--muted)) 0%,
+      hsl(var(--muted) / 0.5) 50%,
+      hsl(var(--muted)) 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+  }
+
+  @keyframes shimmer {
+    0% {
+      background-position: -200% 0;
+    }
+    100% {
+      background-position: 200% 0;
+    }
+  }
+}

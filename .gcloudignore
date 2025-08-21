@@ -1,0 +1,85 @@
+
+# Ignore files for Google Cloud deployment
+
+# Git
+.git/
+.gitignore
+
+# Node modules and dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# Environment files
+.env*
+!.env.example
+
+# Next.js build output and cache
+.next/
+out/
+build/
+dist/
+
+# TypeScript
+*.tsbuildinfo
+tsconfig.tsbuildinfo
+
+# Testing
+coverage/
+.nyc_output/
+junit.xml
+
+# Logs
+logs/
+*.log
+
+# Runtime data
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Temporary files
+tmp/
+temp/
+
+# Documentation
+docs/
+*.md
+!README.md
+
+# Maintenance and backup files
+maintenance/
+*.sql
+*.backup
+
+# Test files
+test*.js
+*test.js
+__tests__/
+
+# Development specific files
+.eslintcache
+.prettierrc*
+.editorconfig
+
+# Prisma
+prisma/migrations/

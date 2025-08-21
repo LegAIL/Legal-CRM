@@ -1,0 +1,70 @@
+
+# Google App Engine configuration for NextJS CRM application
+runtime: nodejs20
+
+# Enable automatic scaling
+automatic_scaling:
+  min_instances: 0
+  max_instances: 10
+  target_cpu_utilization: 0.6
+  target_throughput_utilization: 0.6
+
+# Resource allocation
+resources:
+  cpu: 1
+  memory_gb: 1
+  disk_size_gb: 10
+
+# Environment variables for production
+env_variables:
+  NODE_ENV: production
+  # Database URL - Replace with your Cloud SQL connection string
+  # DATABASE_URL: "postgresql://username:password@/database_name?host=/cloudsql/project-id:region:instance-name"
+  # NextAuth configuration - Update these for production
+  # NEXTAUTH_URL: "https://your-project-id.ey.r.appspot.com"
+  # NEXTAUTH_SECRET: "your-production-secret-here"
+
+# Health check configuration
+readiness_check:
+  path: "/api/health"
+  check_interval_sec: 5
+  timeout_sec: 4
+  failure_threshold: 2
+  success_threshold: 2
+  app_start_timeout_sec: 300
+
+liveness_check:
+  path: "/api/health"
+  check_interval_sec: 30
+  timeout_sec: 4
+  failure_threshold: 2
+  success_threshold: 2
+
+# Static file handling
+handlers:
+  # Handle static assets
+  - url: /_next/static
+    static_dir: .next/static
+    expiration: "1y"
+    secure: always
+
+  # Handle all other requests with Next.js
+  - url: /.*
+    script: auto
+    secure: always
+
+# Skip files during deployment
+skip_files:
+  - ^(.*/)?#.*#$
+  - ^(.*/)?.*~$
+  - ^(.*/)?.*\.py[co]$
+  - ^(.*/)?.*/RCS/.*$
+  - ^(.*/)?\..*$
+  - ^(.*/)?tests/.*$
+  - ^(.*/)?test/.*$
+  - ^Dockerfile$
+  - ^README\..*$
+  - \.gitignore
+  - ^\.git/.*$
+  - \docs/.*$
+  - ^(.*/)?node_modules/.*$
