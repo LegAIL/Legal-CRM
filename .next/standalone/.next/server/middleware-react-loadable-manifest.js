@@ -1,1 +1,0 @@
-self.__REACT_LOADABLE_MANIFEST='{"components/cases/cases-list-client.tsx -> @/components/cases/simple-create-case-modal":{"id":7159,"files":["static/chunks/4920.2b2031e6f807ab4e.js","static/chunks/8575.d119effb3b61bf8e.js"]}}';
