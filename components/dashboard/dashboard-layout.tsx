@@ -17,7 +17,8 @@ import {
   Scale,
   Bell,
   Search,
-  Timer
+  Timer,
+  CalendarDays
 } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Input } from "@/components/ui/input"
@@ -30,6 +31,7 @@ const navigation = [
   { name: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
   { name: "Cases", href: "/cases", icon: FileText },
   { name: "Kanban Board", href: "/kanban", icon: LayoutDashboard },
+  { name: "Calendar", href: "/calendar", icon: CalendarDays },
   { name: "Time Tracking", href: "/time-tracking", icon: Timer },
   { name: "Users", href: "/users", icon: Users },
   { name: "Settings", href: "/settings", icon: Settings },
