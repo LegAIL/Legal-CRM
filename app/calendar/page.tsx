@@ -1,77 +1,32 @@
-'use client'
 
-import React, { useState, useEffect } from 'react'
-import { Calendar, dateFnsLocalizer } from 'react-big-calendar'
-import format from 'date-fns/format'
-import parse from 'date-fns/parse'
-import startOfWeek from 'date-fns/startOfWeek'
-import getDay from 'date-fns/getDay'
-import enUS from 'date-fns/locale/en-US'
-import 'react-big-calendar/lib/css/react-big-calendar.css'
+import { getServerSession } from "next-auth"
+import { redirect } from "next/navigation"
+import { authOptions } from "@/lib/auth"
+import { DashboardLayout } from "@/components/dashboard/dashboard-layout"
+import dynamic from 'next/dynamic'
 
-const locales = {
-  'en-US': enUS,
-}
-
-const localizer = dateFnsLocalizer({
-  format,
-  parse,
-  startOfWeek,
-  getDay,
-  locales,
+const CalendarView = dynamic(() => import('@/components/calendar/calendar-view').then(mod => mod.CalendarView), {
+  ssr: false,
+  loading: () => <p>Loading calendar...</p>
 })
 
-interface CalendarEvent {
-  title: string
-  start: Date
-  end: Date
-  allDay: boolean
-  resource: {
-    type: 'case' | 'milestone'
-    id: string
-  }
+export const metadata = {
+  title: "Kalender - LawAware CRM",
+  description: "Visa och hantera alla cases med deadlines i kalendervy",
 }
 
-const CalendarPage = () => {
-  const [events, setEvents] = useState<CalendarEvent[]>([])
-
-  useEffect(() => {
-    const fetchEvents = async () => {
-      try {
-        const response = await fetch('/api/calendar-events')
-        if (!response.ok) {
-          throw new Error('Failed to fetch events')
-        }
-        const data = await response.json()
-        // Dates from JSON need to be converted back to Date objects
-        const formattedEvents = data.map((event: any) => ({
-          ...event,
-          start: new Date(event.start),
-          end: new Date(event.end),
-        }))
-        setEvents(formattedEvents)
-      } catch (error) {
-        console.error("Error fetching calendar events:", error)
-      }
-    }
-
-    fetchEvents()
-  }, [])
+export default async function CalendarPage() {
+  const session = await getServerSession(authOptions)
+  
+  if (!session) {
+    redirect("/auth/login")
+  }
 
   return (
-    <div className="p-4 md:p-8">
-      <h1 className="text-2xl font-bold mb-4">Calendar</h1>
-      <div style={{ height: '80vh' }}>
-        <Calendar
-          localizer={localizer}
-          events={events}
-          startAccessor="start"
-          endAccessor="end"
-          style={{ height: '100%' }}
-        />
+    <DashboardLayout>
+      <div className="space-y-6">
+        <CalendarView initialView="month" />
       </div>
-    </div>
+    </DashboardLayout>
   )
 }
-
-export default CalendarPage

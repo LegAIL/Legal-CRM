@@ -18,7 +18,7 @@ import {
   Bell,
   Search,
   Timer,
-  CalendarDays
+  Calendar
 } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Input } from "@/components/ui/input"
@@ -30,8 +30,8 @@ interface DashboardLayoutProps {
 const navigation = [
   { name: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
   { name: "Cases", href: "/cases", icon: FileText },
+  { name: "Kalender", href: "/calendar", icon: Calendar },
   { name: "Kanban Board", href: "/kanban", icon: LayoutDashboard },
-  { name: "Calendar", href: "/calendar", icon: CalendarDays },
   { name: "Time Tracking", href: "/time-tracking", icon: Timer },
   { name: "Users", href: "/users", icon: Users },
   { name: "Settings", href: "/settings", icon: Settings },
