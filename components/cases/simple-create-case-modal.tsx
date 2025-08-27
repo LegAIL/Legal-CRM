@@ -78,7 +78,7 @@ export function SimpleCreateCaseModal({ isOpen, onClose, onCaseCreated }: Simple
         clientEmail: formData.clientEmail?.trim() || null,
       }
 
-      const response = await fetch("/api/cases", {
+      const response = await fetch("/api/cases/simple", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
