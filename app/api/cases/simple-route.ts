@@ -103,8 +103,8 @@ export async function POST(request: NextRequest) {
         userId: currentUser.id,
         caseId: newCase.id,
         metadata: {
-          priority,
-          clientName
+          priority: String(priority),
+          clientName: String(clientName || "")
         }
       }
     })
